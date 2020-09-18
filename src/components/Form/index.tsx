@@ -27,7 +27,6 @@ function Form(): JSX.Element {
   const [renderList, setRenderList] = useState(false);
 
   const checkConditionalRender = (value: string): void => {
-    console.log(value, value.length);
     if (value.length > 6) {
       setRenderList(true);
     } else {
@@ -39,7 +38,6 @@ function Form(): JSX.Element {
     const { name, value } = e.target;
 
     if (name === "cardNumber") {
-      console.log("card");
       checkConditionalRender(value);
     }
 
@@ -67,6 +65,7 @@ function Form(): JSX.Element {
         value={formData.cardNumber}
         handleChange={handleChange}
         name="cardNumber"
+        placeholder="4500725******4567"
         marginClass="my-2"
       />
       <List render={renderList} />
@@ -74,12 +73,14 @@ function Form(): JSX.Element {
         value={formData.cardName}
         handleChange={handleChange}
         name="cardName"
+        placeholder="Nombre Completo"
         marginClass="my-2"
       />
       <Input
         value={formData.cardID}
         handleChange={handleChange}
         name="cardID"
+        placeholder="Numero de Documento"
         marginClass="my-2"
       />
 
@@ -88,6 +89,7 @@ function Form(): JSX.Element {
           value={formData.cardExpDate}
           handleChange={handleChange}
           name="cardExpDate"
+          placeholder="Vencimiento"
           widthClass="w-1/2 "
           marginClass="my-2 mr-1"
         />
@@ -95,6 +97,7 @@ function Form(): JSX.Element {
           value={formData.cardCode}
           handleChange={handleChange}
           name="cardCode"
+          placeholder="Cod. de Seguridad"
           widthClass="w-1/2 "
           marginClass="my-2"
         />
