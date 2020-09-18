@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Input from "../Input";
-import { ReactComponent as Visalogo } from "../../assets/visa.svg";
+import Card from "../Card";
+import List from "../List";
 
 type changeEvent = React.ChangeEvent<HTMLInputElement>;
 type FormEvent = React.FormEvent<HTMLFormElement>;
@@ -23,13 +24,22 @@ const initialState: IFormData = {
 
 function Form(): JSX.Element {
   const [formData, setFormData] = useState<IFormData>(initialState);
+  const [renderList, setRenderList] = useState(false);
 
-  const checkConditionalRender = (value: string): void => {};
+  const checkConditionalRender = (value: string): void => {
+    console.log(value, value.length);
+    if (value.length > 6) {
+      setRenderList(true);
+    } else {
+      setRenderList(false);
+    }
+  };
 
   const handleChange = (e: changeEvent): void => {
     const { name, value } = e.target;
 
     if (name === "cardNumber") {
+      console.log("card");
       checkConditionalRender(value);
     }
 
@@ -40,6 +50,7 @@ function Form(): JSX.Element {
 
     setFormData(newFormData);
   };
+
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
   };
@@ -47,26 +58,18 @@ function Form(): JSX.Element {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-sm rounded overflow-hidden shadow-lg flex flex-col p-2 bg-white"
+      className="max-w-sm rounded overflow-hidden shadow-lg flex flex-col  p-4 bg-white"
     >
-      <div className="justify-between rounded-lg h-32 w-8/12 mx-auto h-30 bg-gradient-to-r from-teal-400 to-blue-500 flex flex-col">
-        <div className="w-16 h-16 self-end mr-4">
-          <Visalogo />
-        </div>
+      <Card />
 
-        <div className=" text-white ml-2 mb-2 ">
-          <p className="tracking-widest">4500725******4567</p>
-          <p className="tracking-widest">Demo user</p>
-        </div>
-      </div>
-
-      <p className="text-center">o</p>
+      <p className="text-center text-grey-300">o</p>
       <Input
         value={formData.cardNumber}
         handleChange={handleChange}
         name="cardNumber"
         marginClass="my-2"
       />
+      <List render={renderList} />
       <Input
         value={formData.cardName}
         handleChange={handleChange}

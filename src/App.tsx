@@ -4,7 +4,7 @@ import "./app.build.css";
 
 function App() {
   return (
-    <main className="w-screen h-screen  flex justify-center items-center bg-gray-200">
+    <main className="w-screen h-100 min-h-screen  flex justify-center items-center bg-gray-200">
       <Form />
     </main>
   );
